@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       resources :users
       post '/auth', to: 'auth#create'
       get '/current_user', to: 'auth#show'
+      post '/locations', to: 'locations#create'
+      get '/locations', to: 'locations#index'
     end
   end
 end

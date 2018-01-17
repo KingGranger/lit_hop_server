@@ -3,6 +3,8 @@ class CreateTrips < ActiveRecord::Migration[5.1]
     create_table :trips do |t|
       t.string :start_location
       t.string :end_location
+      t.datetime :start_time
+      t.datetime :end_time
       t.belongs_to :user, foreign_key: true
       t.belongs_to :bar, foreign_key: true
 
