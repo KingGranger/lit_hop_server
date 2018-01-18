@@ -9,10 +9,10 @@
 
 main_user = User.create({username: 'The Boy Granger', password: 'secret', age: 23})
 
-GOOGLE_PLACES_API = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.7128,-74.0060&radius=500&type=bar&key=AIzaSyCQh-ANCsLGqwp1ETq1eSj55pUo0Rd48dg"
-
-response = RestClient.get(GOOGLE_PLACES_API)
-bars_json = JSON.parse(response)
-
-byebug
+# GOOGLE_PLACES_API = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.7128,-74.0060&radius=500&type=bar&key=AIzaSyCQh-ANCsLGqwp1ETq1eSj55pUo0Rd48dg"
+#
+# response = RestClient.get(GOOGLE_PLACES_API)
+# bars_json = JSON.parse(response)
+#
+# byebug
 true
