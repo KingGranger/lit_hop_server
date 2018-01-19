@@ -7,9 +7,19 @@ class Api::V1::BarsController < ApplicationController
   end
 
   def create
-    @bar = Bar.create(bar_params)
-    # byebug
-    render json: @bar
+    google_places_api = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{bar_params[:lat]},#{bar_params[:lng]}&radius=500&type=bar&key=AIzaSyCQh-ANCsLGqwp1ETq1eSj55pUo0Rd48dg"
+    response = RestClient.get(google_places_api)
+    bars_json = JSON.parse(response)
+    bars = bars_json['results'].map do |bar|
+       Bar.find_or_create_by(name: bar['name'],
+       lat: bar['geometry']['location']['lat'].to_f,
+       lng: bar['geometry']['location']['lng'].to_f,
+       price_level: bar['price_level'],
+       address: bar['vicinity'],
+       place_id: bar['place_id'],
+       rating: bar['rating'].to_f)
+     end
+    render json: bars
   end
 
   def show
@@ -33,6 +43,6 @@ class Api::V1::BarsController < ApplicationController
   end
 
   def bar_params
-    params.permit(:name, :address, :lat, :lng, :open, :price_level, :rating)
+    params.permit(:name, :address, :lat, :lng, :open, :price_level, :rating, :place_id)
   end
 end

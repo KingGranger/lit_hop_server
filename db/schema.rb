@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180116192406) do
+ActiveRecord::Schema.define(version: 20180119002104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,18 +25,25 @@ ActiveRecord::Schema.define(version: 20180116192406) do
     t.boolean "open"
     t.integer "price_level"
     t.string "place_id"
-    t.integer "rating"
+    t.float "rating"
+  end
+
+  create_table "journeys", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "start_location"
+    t.string "end_location"
+    t.index ["user_id"], name: "index_journeys_on_user_id"
   end
 
   create_table "trips", force: :cascade do |t|
-    t.string "start_location"
-    t.string "end_location"
-    t.bigint "user_id"
     t.bigint "bar_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "journey_id"
     t.index ["bar_id"], name: "index_trips_on_bar_id"
-    t.index ["user_id"], name: "index_trips_on_user_id"
+    t.index ["journey_id"], name: "index_trips_on_journey_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,6 +54,7 @@ ActiveRecord::Schema.define(version: 20180116192406) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "journeys", "users"
   add_foreign_key "trips", "bars"
-  add_foreign_key "trips", "users"
+  add_foreign_key "trips", "journeys"
 end

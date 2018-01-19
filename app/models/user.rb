@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_many :trips
-  has_many :bars, through: :trips
+  has_many :journeys
+  has_many :trips, through: :journeys
   has_secure_password
 
   # validates_confirmation_of :password

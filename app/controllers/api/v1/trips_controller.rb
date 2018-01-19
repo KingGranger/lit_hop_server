@@ -31,7 +31,7 @@ class Api::V1::TripsController < ApplicationController
   end
 
   def trip_params
-    params.permit(:start_location, :end_location, :start_time, :end_time, :user_id, :bar_id)
+    params.permit(:start_location, :end_location, :start_time, :end_time, :journey_id, :bar_id)
   end
 
 end
