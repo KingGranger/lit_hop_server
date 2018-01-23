@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180119002104) do
+ActiveRecord::Schema.define(version: 20180122224243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20180119002104) do
     t.integer "price_level"
     t.string "place_id"
     t.float "rating"
+    t.string "types", default: [], array: true
   end
 
   create_table "journeys", force: :cascade do |t|

@@ -15,6 +15,7 @@ class Api::V1::BarsController < ApplicationController
        lat: bar['geometry']['location']['lat'].to_f,
        lng: bar['geometry']['location']['lng'].to_f,
        price_level: bar['price_level'],
+       types: bar['types'],
        address: bar['vicinity'],
        place_id: bar['place_id'],
        rating: bar['rating'].to_f)

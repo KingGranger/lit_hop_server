@@ -7,8 +7,12 @@ class  Api::V1::JourneysController < ApplicationController
   end
 
   def create
-    @journey = Journey.create(journey_params)
-    render json: @journey
+    @journey = Journey.create({user: current_user, start_location: params['start_location'], end_location: params['end_location']})
+    params['trips'].each do |bar|
+      @bar = Bar.find_by({id: bar['id']})
+      Trip.create({journey: @journey, bar: @bar})
+    end
+    render json: {journey: @journey, trips: @journey.trips}
   end
 
   def show
@@ -27,11 +31,11 @@ class  Api::V1::JourneysController < ApplicationController
 
   private
 
-  def set_journey 
+  def set_journey
     @journey = Journey.find(params[:id])
   end
 
   def journey_params
-    params.permit(:user_id)
+    params.require(:journey).permit(:user)
   end
 end
