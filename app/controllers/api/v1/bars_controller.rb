@@ -7,7 +7,7 @@ class Api::V1::BarsController < ApplicationController
   end
 
   def create
-    google_places_api = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{bar_params[:lat]},#{bar_params[:lng]}&radius=500&type=bar&key=AIzaSyCQh-ANCsLGqwp1ETq1eSj55pUo0Rd48dg"
+    google_places_api = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{bar_params[:lat]},#{bar_params[:lng]}&radius=1600&type=bar&key=AIzaSyCQh-ANCsLGqwp1ETq1eSj55pUo0Rd48dg"
     response = RestClient.get(google_places_api)
     bars_json = JSON.parse(response)
     bars = bars_json['results'].map do |bar|
