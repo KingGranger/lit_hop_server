@@ -15,7 +15,7 @@ main_user = User.create({username: 'The Boy Granger', password: 'secret', age: 2
 # bars_json = JSON.parse(response)
 #
 # byebug
-first_journey = Journey.create({user: main_user, start_location: 'my house', end_location: "my bitches's house"})
+first_journey = Journey.create({user: main_user, start_location: 'my house', end_location: " house"})
 
 only_bar = Bar.create({name: 'my house'})
 
