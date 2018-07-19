@@ -50,6 +50,7 @@ GEM
     case_transform (0.2)
       activesupport
     concurrent-ruby (1.0.5)
+    cowsay (0.3.0)
     crass (1.0.4)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
@@ -152,6 +153,7 @@ DEPENDENCIES
   active_model_serializers
   bcrypt (~> 3.1.7)
   byebug
+  cowsay
   json
   jwt
   listen (>= 3.0.5, < 3.2)
